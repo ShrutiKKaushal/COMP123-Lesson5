@@ -12,66 +12,87 @@ namespace Comp123_Lesson5
         {
 
             
-           string[] carMakeList = {"Honda", "BMW", "Mercedes","Jeep","Ford"};
+           string[] originalArray = {"Honda", "BMW", "Mercedes","Jeep","Ford"};
 
-           string[] tempCarMakeList = new string[3];
+           string[] newArray = new string[3];
 
 
            Random rnd = new Random();
 
-           int randomCar;
+           int randomMember;
 
            
 
             //Assign cells from one array to another
-           for (int index = 0; index < tempCarMakeList.Length; index++)
+            /* Alternate looping structure
+           for (int index = 0; index < newArray.Length; index++)
            {
-               randomCar = generateRandomCar(rnd);
+               randomMember = generateRandomMember(rnd);
 
-               if (carMakeList[randomCar] != "Unavailable")
+               if (originalArray[randomMember] != "Unavailable")
                {
-                   tempCarMakeList[index] = carMakeList[randomCar];
-                   carMakeList[randomCar] = "Unavailable";
+                   newArray[index] = originalArray[randomMember];
+                   originalArray[randomMember] = "Unavailable";
                }
               
            }
+            */
 
+
+
+           
+          int index = 0;
+          while (index < newArray.Length)
+           {
+
+               randomMember = generateRandomMember(rnd);
+               if (originalArray[randomMember] != "Unavailable")
+               {
+                   newArray[index] = originalArray[randomMember];
+                  
+                   originalArray[randomMember] = "Unavailable";
+                  
+                   index++;
+               }
+               
+           }
+          
 
             //Output the value of each cell in each array
            Console.WriteLine("++++++++++++++++++++++");
            Console.WriteLine("+  Original Car List +");
            Console.WriteLine("++++++++++++++++++++++");
-               for (int index = 0; index < carMakeList.Length; index++)
+               for ( index = 0; index < originalArray.Length; index++)
                {
-                   Console.WriteLine(carMakeList[index]);
+                   Console.WriteLine(originalArray[index]);
 
                }
                Console.WriteLine("++++++++++++++++++++++");
                Console.WriteLine("+    New Car List    +");
                Console.WriteLine("++++++++++++++++++++++");
-               for (int index = 0; index < tempCarMakeList.Length; index++)
+               for ( index = 0; index < newArray.Length; index++)
                {
                    
-                   Console.WriteLine(tempCarMakeList[index]);
+                   Console.WriteLine(newArray[index]);
                }
                
             
             /* Alternate way to declare and initialize an array
 
-            string[] carMakeList = new string[6];
+            string[] originalArray = new string[6];
 
-            carMakeList[0] = "Jaguar";
-            carMakeList[1] = "Honda";
-            carMakeList[2] = "BMW";
-            carMakeList[3] = "Mercedes";
-            carMakeList[5] = "Jeep";
-            carMakeList[6] = "Ford";
+            originalArray[0] = "Jaguar";
+            originalArray[1] = "Honda";
+            originalArray[2] = "BMW";
+            originalArray[3] = "Mercedes";
+            originalArray[5] = "Jeep";
+            originalArray[6] = "Ford";
             */
             /* Alternate Method to loop through (iterate across the array)
            int index = 0;
-            while(index < carMakeList.Length)
+            while(index < originalArray.Length)
             {
-                Console.WriteLine(carMakeList[index]);
+                Console.WriteLine(originalArray[index]);
                 index++;
             }
             */
@@ -88,7 +109,7 @@ namespace Comp123_Lesson5
 
         }
 
-        private static int generateRandomCar(Random rnd)
+        private static int generateRandomMember(Random rnd)
         {
             int randomCar;
             randomCar = rnd.Next(5);
