@@ -12,45 +12,51 @@ namespace Comp123_Lesson5
         {
 
             
-           string[] originalArray = {"Honda", "BMW", "Mercedes","Jeep","Ford"};
+           string[] originalArray = {"Honda", "BMW", "Mercedes","Jeep","Ford","Jaguar"}; // literal notation or string initializer
 
-           string[] newArray = new string[3];
+           string[] tempArray = new string[originalArray.Length];
+
+           string[] finalArray = new string[3];
 
 
            Random rnd = new Random();
 
-           int randomMember;
+           int randomElement;
 
-           
-
+            //Copy each element of original array to temp array
+           for(int element = 0; element < originalArray.Length; element++)
+           {
+               tempArray[element] = originalArray[element];
+           }
             //Assign cells from one array to another
             /* Alternate looping structure
-           for (int index = 0; index < newArray.Length; index++)
+           for (int index = 0; index < finalArray.Length; index++)
            {
-               randomMember = generateRandomMember(rnd);
+               randomElement = generateRandomElement(rnd);
 
-               if (originalArray[randomMember] != "Unavailable")
+               if (originalArray[randomElement] != "Unavailable")
                {
-                   newArray[index] = originalArray[randomMember];
-                   originalArray[randomMember] = "Unavailable";
+                   finalArray[index] = originalArray[randomElement];
+                   originalArray[randomElement] = "Unavailable";
                }
               
            }
             */
 
 
-
            
           int index = 0;
-          while (index < newArray.Length)
+
+          while (index < finalArray.Length)
            {
 
-               randomMember = generateRandomMember(rnd);
-               if (originalArray[randomMember] != "Unavailable")
+               randomElement = generateRandomElement(rnd, originalArray.Length); // Generate random number
+
+               if (tempArray[randomElement] != "Unavailable")
                {
-                   newArray[index] = originalArray[randomMember];
-                  
-                   originalArray[randomMember] = "Unavailable";
+                   finalArray[index] = tempArray[randomElement];
+
+                   tempArray[randomElement] = "Unavailable";
                   
                    index++;
                }
@@ -70,10 +76,10 @@ namespace Comp123_Lesson5
                Console.WriteLine("++++++++++++++++++++++");
                Console.WriteLine("+    New Car List    +");
                Console.WriteLine("++++++++++++++++++++++");
-               for ( index = 0; index < newArray.Length; index++)
+               for ( index = 0; index < finalArray.Length; index++)
                {
                    
-                   Console.WriteLine(newArray[index]);
+                   Console.WriteLine(finalArray[index]);
                }
                
             
@@ -98,10 +104,6 @@ namespace Comp123_Lesson5
             */
 
 
-            
-           
-           
-
             Console.WriteLine();
             Console.WriteLine("+++++++++++++++++++++");
             Console.WriteLine("Press any key to exit");
@@ -109,12 +111,12 @@ namespace Comp123_Lesson5
 
         }
 
-        private static int generateRandomMember(Random rnd)
+        private static int generateRandomElement(Random rnd, int max)
         {
-            int randomCar;
-            randomCar = rnd.Next(5);
-            Console.WriteLine("My random Car is {0}", randomCar);//Debugging line
-            return randomCar;
+            int number;
+            number = rnd.Next(max);
+           // Console.WriteLine("My random Car is {0}", number);//Debugging line
+            return number;
         }
     }
 }
